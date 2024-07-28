@@ -1,16 +1,23 @@
-import { IsNotEmpty } from 'class-validator';
-import { CompanyEntity } from '../repositories/company.entity';
-import { Optional } from '@nestjs/common';
-import { Status } from '../../../common/enums/common.enum';
+import {IsNotEmpty} from 'class-validator';
+import {CompanyEntity} from '../repositories/company.entity';
+import {Optional} from '@nestjs/common';
+import {Status} from '../../../common/enums/common.enum';
 
 export class OnboardCompanyReqDto {
+
     id: string;
 
     @IsNotEmpty()
     name: string;
 
+    @Optional()
+    unique_name: string;
+
     @IsNotEmpty()
     company_type_id: number;
+
+    @Optional()
+    company_type_description:string
 
     @IsNotEmpty()
     operation_country_id: number;
@@ -27,7 +34,6 @@ export class OnboardCompanyReqDto {
     @Optional()
     logo: string;
 
-    @IsNotEmpty()
     user_id: string;
 }
 
@@ -35,7 +41,6 @@ export class OnboardCompanyResDto extends OnboardCompanyReqDto {
     id: string;
     account_id: number;
     company_type_description: string;
-    status_code: string;
 }
 
 export class OnboardCompanyMapper {
@@ -45,8 +50,14 @@ export class OnboardCompanyMapper {
         entity.name = req.name;
         entity.company_type_id = req.company_type_id;
         entity.country_id = req.operation_country_id;
+        entity.country_name = req.operation_country_name;
         entity.liquidate_unit_id = req.liquidate_unit_id;
         entity.status = Status.ACTIVE;
+        if (!req.unique_name || req.unique_name.trim() === '') {
+            entity.unique_name = req.name.toLowerCase()
+        }else{
+            entity.unique_name = req.unique_name.toLowerCase()
+        }
         return entity;
     }
 }

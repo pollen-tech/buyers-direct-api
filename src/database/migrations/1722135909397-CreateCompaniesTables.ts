@@ -49,7 +49,7 @@ export class CreateCompaniesTables1722135909397 implements MigrationInterface {
                     created_at        timestamp without time zone NOT NULL DEFAULT now(),
                     updated_at        timestamp without time zone NOT NULL DEFAULT now(),
                     deleted_at        timestamp without time zone,
-                    updated_time      bigint                default 0,
+                    updated_on        bigint                default 0,
                     status            varchar(25)  not null DEFAULT 'NA',
                     CONSTRAINT uq_company_name UNIQUE (name),
                     CONSTRAINT fk_company_company_type_id FOREIGN KEY (company_type_id) REFERENCES company_type (id),

@@ -5,6 +5,7 @@ import {CustomConfigModule} from '../../src/config/config.module';
 import {TerminusModule} from '@nestjs/terminus';
 import {CompanyEntity} from "../../src/app/onboard/repositories/company.entity";
 import {CompanyTypeEntity} from "../../src/app/onboard/repositories/company.type.entity";
+import {CompanyUserEntity} from "../../src/app/onboard/repositories/company.user.entity";
 
 const DB_HOST: string = 'localhost';
 const DB_PORT: number = 5455;
@@ -12,7 +13,7 @@ const DB_NAME = 'liquid_db';
 const DB_USERNAME = 'liquiduser';
 const DB_PASSWORD = 'password334';
 
-const entitiesList = [CompanyEntity,CompanyTypeEntity];
+const entitiesList = [CompanyEntity,CompanyTypeEntity,CompanyUserEntity];
 
 /**
  * Handle Database connection.
