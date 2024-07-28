@@ -1,8 +1,8 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { HealthcheckModule } from '../../../src/app/healthcheck/healthcheck.module';
-import { CustomConfigModule } from '../../../src/config/config.module';
-import { DatabaseModule } from '../../../src/database/database.module';
+import {Test, TestingModule} from '@nestjs/testing';
+import {HealthcheckModule} from '../../../src/app/healthcheck/healthcheck.module';
+import {CustomConfigModule} from '../../../src/config/config.module';
 import {HealthcheckController} from "../../../src/app/healthcheck/controllers/healthcheck.controller";
+import {TestDatabaseModule} from "../../config/test.database.module";
 
 describe('Controller: Healthcheck Test', () => {
     let testingModule: TestingModule;
@@ -11,7 +11,7 @@ describe('Controller: Healthcheck Test', () => {
     beforeAll(async () => {
         testingModule = await Test.createTestingModule({
             // imports: [CustomConfigModule, DatabaseModule.forRoot(), HealthcheckModule],
-            imports: [CustomConfigModule, DatabaseModule.forRoot(), HealthcheckModule],
+            imports: [CustomConfigModule, TestDatabaseModule.forRoot(), HealthcheckModule],
             controllers: [],
             providers: [],
         }).compile();

@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DatabaseModule } from 'src/database/database.module';
 import { OnboardController } from './controller/onboard.controller';
 import { OnboardCompanyService } from './domain/onboard.company.service';
 import { CompanyTypeEntity } from './repositories/company.type.entity';
@@ -11,6 +10,7 @@ import { CompanyTypeRepository } from './repositories/company.type.repository';
 import { CompanyRepository } from './repositories/company.repository';
 import { CompanyUserRepository } from './repositories/company.user.repository';
 import { LiquidateUnitRepository } from './repositories/liquidate.unit.repository';
+import {DatabaseModule} from "../../database/database.module";
 
 let repositories: any[] = [CompanyTypeRepository, CompanyRepository, CompanyUserRepository, LiquidateUnitRepository];
 

@@ -1,7 +1,6 @@
-import { CustomRepository } from 'src/database/decorators/custom-repository.decorator';
-import BaseRepository from 'src/database/infrastructure/repository/base.repository';
-import { CompanyEntity } from './company.entity';
-import { ChannelName } from '../../../common/enums/common.enum';
+import {CompanyEntity} from './company.entity';
+import {CustomRepository} from "../../../database/decorators/custom-repository.decorator";
+import BaseRepository from "../../../database/infrastructure/repository/base.repository";
 
 @CustomRepository(CompanyEntity)
 export class CompanyRepository extends BaseRepository<CompanyEntity> {

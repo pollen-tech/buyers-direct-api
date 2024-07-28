@@ -1,4 +1,5 @@
 import { Column, Entity, PrimaryColumn } from 'typeorm';
+import {Status} from "../../../common/enums/common.enum";
 
 @Entity('company_type')
 export class CompanyTypeEntity {
@@ -12,5 +13,5 @@ export class CompanyTypeEntity {
     description: string;
 
     @Column({ type: 'varchar' })
-    status: string;
+    status: Status;
 }
