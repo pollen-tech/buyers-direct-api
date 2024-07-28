@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { HealthCheck, HealthCheckService } from '@nestjs/terminus';
 import { Public } from 'nest-keycloak-connect';
-import { DatabaseHealthcheckService } from '../../../../database/database-healthcheck.service';
+import { DatabaseHealthcheckService } from '../../../database/database-healthcheck.service';
 
 @Controller('healthcheck')
 export class HealthcheckController {
