@@ -400,6 +400,6 @@ dist
 .serverless/**/*.zip
 
 build/bocker/db
-build/bocker/db**
+build/bocker/db/**
 build/env/**
 

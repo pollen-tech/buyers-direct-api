@@ -5,12 +5,12 @@ export class CompanyTypeEntity {
     @PrimaryColumn()
     id: number;
 
-    @Column()
+    @Column({ type: 'varchar' })
     name: string;
 
-    @Column()
+    @Column({ type: 'varchar' })
     description: string;
 
-    @Column()
+    @Column({ type: 'varchar' })
     status: string;
 }

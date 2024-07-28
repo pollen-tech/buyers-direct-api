@@ -6,22 +6,23 @@ export class CompanyEntity {
     @PrimaryGeneratedColumn()
     id: string;
 
-    @Column()
+    @Column({ type: 'int' })
     account_id: number;
 
-    @Column()
+
+    @Column({ type: 'varchar' })
     name: string;
 
-    @Column()
+    @Column({ type: 'int' })
     company_type_id: number;
 
-    @Column()
+    @Column({ type: 'int' })
     country_id: number;
 
-    @Column()
+    @Column({ type: 'int' })
     liquidate_unit_id: number;
 
-    @Column()
+    @Column({ type: 'varchar' })
     status: Status;
 
     @CreateDateColumn({ type: 'timestamptz' })

@@ -11,7 +11,7 @@ export class CompanyUserEntity {
     @Column({ type: 'uuid' })
     user_id: string;
 
-    @Column()
+    @Column({ type: 'varchar' })
     status: string;
 
     @CreateDateColumn({ type: 'timestamptz' })

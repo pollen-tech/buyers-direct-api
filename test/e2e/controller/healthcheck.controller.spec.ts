@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { HealthcheckController } from '../../../src/app/healthcheck/application/controllers/healthcheck.controller';
 import { HealthcheckModule } from '../../../src/app/healthcheck/healthcheck.module';
 import { CustomConfigModule } from '../../../src/config/config.module';
 import { DatabaseModule } from '../../../src/database/database.module';
+import {HealthcheckController} from "../../../src/app/healthcheck/controllers/healthcheck.controller";
 
 describe('Controller: Healthcheck Test', () => {
     let testingModule: TestingModule;
@@ -19,8 +19,8 @@ describe('Controller: Healthcheck Test', () => {
     });
 
     describe('fn:check =>', () => {
-        it('Should return Pending"', () => {
-            const response = healthCheckController.check();
+        it('Should return Pending"', async () => {
+            const response = await healthCheckController.check();
             console.log('response', response);
         });
     });
