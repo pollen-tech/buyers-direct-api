@@ -9,8 +9,8 @@ import {
 } from 'typeorm';
 import {Status} from '../../../common/enums/common.enum';
 
-@Entity('company_interest')
-export class CompanyInterestEntity {
+@Entity('target_market')
+export class TargetMarketEntity {
 
     @PrimaryGeneratedColumn("uuid")
     id: string;
@@ -18,11 +18,14 @@ export class CompanyInterestEntity {
     @Column({type: 'uuid'})
     company_id: string;
 
-    @Column({type: 'int', default: 0})
-    category_id: number;
+    @Column({type: 'int'})
+    country_id: number;
 
-    @Column({type: 'int', default: 0})
-    order_volume_id: number;
+    @Column({type: 'varchar'})
+    country_name: string;
+
+    @Column({type: 'text'})
+    cities: string;
 
     @Column({type: 'varchar'})
     status: Status;
@@ -33,11 +36,11 @@ export class CompanyInterestEntity {
     @UpdateDateColumn({type: 'timestamptz'})
     updated_at: Date;
 
+    @Column({type: 'timestamptz'})
+    deleted_at: Date;
+
     @Column({type: 'bigint'})
     updated_on: number;
-
-    constructor() {
-    }
 
     @BeforeInsert()
     @BeforeUpdate()

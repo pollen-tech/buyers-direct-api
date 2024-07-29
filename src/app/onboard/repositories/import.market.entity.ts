@@ -9,8 +9,8 @@ import {
 } from 'typeorm';
 import {Status} from '../../../common/enums/common.enum';
 
-@Entity('company_interest')
-export class CompanyInterestEntity {
+@Entity('import_market')
+export class ImportMarketEntity {
 
     @PrimaryGeneratedColumn("uuid")
     id: string;
@@ -18,11 +18,11 @@ export class CompanyInterestEntity {
     @Column({type: 'uuid'})
     company_id: string;
 
-    @Column({type: 'int', default: 0})
-    category_id: number;
+    @Column({type: 'int'})
+    country_id: number;
 
-    @Column({type: 'int', default: 0})
-    order_volume_id: number;
+    @Column({type: 'varchar'})
+    country_name: string;
 
     @Column({type: 'varchar'})
     status: Status;
@@ -33,15 +33,20 @@ export class CompanyInterestEntity {
     @UpdateDateColumn({type: 'timestamptz'})
     updated_at: Date;
 
-    @Column({type: 'bigint'})
-    updated_on: number;
+    @Column({type: 'timestamptz', nullable: true})
+    deleted_at: Date;
 
-    constructor() {
-    }
+    @Column({type: 'bigint' })
+    updated_on: number;
 
     @BeforeInsert()
     @BeforeUpdate()
     beforeCreateOrUpdate() {
         this.updated_on = Date.now();
+    }
+
+    @BeforeInsert()
+    beforeInsert() {
+        this.status = Status.ACTIVE;
     }
 }

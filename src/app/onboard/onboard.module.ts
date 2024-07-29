@@ -11,15 +11,30 @@ import { CompanyRepository } from './repositories/company.repository';
 import { CompanyUserRepository } from './repositories/company.user.repository';
 import { LiquidateUnitRepository } from './repositories/liquidate.unit.repository';
 import {DatabaseModule} from "../../database/database.module";
+import {CompanyInterestService} from "./domain/company.interest.service";
+import {ImportMarketRepository} from "./repositories/import.market.repository";
+import {TargetMarketRepository} from "./repositories/target.market.repository";
+import {CategoryRepository} from "./repositories/category.repository";
+import {CompanyInterestRepository} from "./repositories/company.interest.repository";
+import {OrderVolumeRepository} from "./repositories/order.volume.repository";
+import {ImportMarketEntity} from "./repositories/import.market.entity";
+import {TargetMarketEntity} from "./repositories/target.market.entity";
+import {CategoryEntity} from "./repositories/category.entity";
+import {OrderVolumeEntity} from "./repositories/order.volume.entity";
 
-let repositories: any[] = [CompanyTypeRepository, CompanyRepository, CompanyUserRepository, LiquidateUnitRepository];
+let repositories: any[] = [CompanyTypeRepository, CompanyRepository,
+    CompanyUserRepository, LiquidateUnitRepository,
+    ImportMarketRepository, TargetMarketRepository,CategoryRepository,CompanyInterestRepository,
+    OrderVolumeRepository
+];
 
 @Module({
     imports: [
-        TypeOrmModule.forFeature([CompanyTypeEntity, CompanyEntity, CompanyUserEntity, LiquidateUnitEntity]),
+        TypeOrmModule.forFeature([CompanyTypeEntity, CompanyEntity, CompanyUserEntity, LiquidateUnitEntity,
+        ImportMarketEntity,TargetMarketEntity,CategoryEntity,CompanyInterestRepository, OrderVolumeEntity]),
         DatabaseModule.forCustomRepository(repositories),
     ],
-    providers: [OnboardCompanyService],
+    providers: [OnboardCompanyService,CompanyInterestService],
     controllers: [OnboardController],
     exports: [TypeOrmModule, OnboardCompanyService],
 })
