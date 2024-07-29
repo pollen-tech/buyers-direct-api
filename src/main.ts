@@ -10,8 +10,8 @@ async function bootstrap() {
     const app = await NestFactory.create(AppModule);
 
     const config = new DocumentBuilder()
-        .setTitle('Pollen LMS BE')
-        .setDescription('Pollen LMS API swagger documentation')
+        .setTitle('Pollen Direct Documentation')
+        .setDescription('Pollen Direct  API swagger documentation')
         .setVersion('1.0')
         .addBearerAuth()
         .build();

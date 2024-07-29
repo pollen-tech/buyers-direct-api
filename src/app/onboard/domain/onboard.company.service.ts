@@ -34,10 +34,7 @@ export class OnboardCompanyService {
     async findOneByUserId(user_id: string) {
         const company_user = await this.companyUserRepository.findOne({where: {user_id}});
         if (!company_user) {
-            return {
-                status_code: HttpStatus.NOT_FOUND.toString(),
-                desc: 'User does not exist',
-            };
+            return null;
         }
         const company = await this.companyRepository.findOne({where: {id: company_user.company_id}});
         return this.createResponseDto(company, company_user.user_id);

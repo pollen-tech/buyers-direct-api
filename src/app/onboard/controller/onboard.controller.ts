@@ -53,6 +53,9 @@ export class OnboardController {
     }
 
     private createResponse(data: OnboardCompanyResDto | any, status_code: string) {
+        if(data){
+
+        }
         return {
             status_code: status_code,
             message: "",

@@ -1,4 +1,4 @@
-service: user-onboard-api
+service: direct-api
 
 frameworkVersion: '3'
 
@@ -19,8 +19,8 @@ provider:
 
 functions:
   api:
-    name: user-onboard-api
-    description: Users Onboarding Aws Lambda API
+    name: direct-onboard-api
+    description: Pollen Direct Aws Lambda API
     handler: dist/aws/lambda.handler
     events:
       - http:
