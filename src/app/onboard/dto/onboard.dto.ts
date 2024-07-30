@@ -1,8 +1,8 @@
-import {isEmpty, IsNotEmpty} from 'class-validator';
-import {CompanyEntity} from '../repositories/company.entity';
-import {Optional} from '@nestjs/common';
-import {Status} from '../../../common/enums/common.enum';
-import {CompanyInterestService} from '../domain/company.interest.service';
+import { isEmpty, IsNotEmpty } from 'class-validator';
+import { CompanyEntity } from '../repositories/company.entity';
+import { Optional } from '@nestjs/common';
+import { Status } from '../../../common/enums/common.enum';
+import { CompanyInterestService } from '../domain/company.interest.service';
 
 export class OnboardCompanyReqDto {
     id!: string;

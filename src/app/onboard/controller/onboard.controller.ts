@@ -1,9 +1,9 @@
-import {Body, Controller, Get, HostParam, HttpCode, HttpStatus, Param, Post, Query} from '@nestjs/common';
-import {ApiTags} from '@nestjs/swagger';
-import {Public} from 'nest-keycloak-connect';
-import {OnboardCompanyService} from '../domain/onboard.company.service';
-import {CompanyInterestReqDto, OnboardCompanyReqDto, OnboardCompanyResDto} from '../dto/onboard.dto';
-import {CompanyInterestService} from '../domain/company.interest.service';
+import { Body, Controller, Get, HostParam, HttpCode, HttpStatus, Param, Post, Query } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+import { Public } from 'nest-keycloak-connect';
+import { OnboardCompanyService } from '../domain/onboard.company.service';
+import { CompanyInterestReqDto, OnboardCompanyReqDto, OnboardCompanyResDto } from '../dto/onboard.dto';
+import { CompanyInterestService } from '../domain/company.interest.service';
 
 @ApiTags('Onboard-company')
 @Controller('onboard-company')
@@ -12,8 +12,7 @@ export class OnboardController {
     constructor(
         private readonly onboardCompanyService: OnboardCompanyService,
         private companyInterestService: CompanyInterestService,
-    ) {
-    }
+    ) {}
 
     @Get('/index')
     @HttpCode(HttpStatus.OK)
