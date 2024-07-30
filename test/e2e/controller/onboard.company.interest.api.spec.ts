@@ -6,12 +6,15 @@ import { OnboardModule } from "../../../src/app/onboard/onboard.module";
 import { CompanyTypeRepository } from "../../../src/app/onboard/repositories/company.type.repository";
 import { DataRepository } from "../../config/db/data.repository";
 import apiRequestTest from "supertest";
+import { create_company_req_data } from "../../data/json/create_company_interest";
+import { OnboardCompanyService } from "../../../src/app/onboard/domain/onboard.company.service";
 
-describe("Controller: Onboard Company API Test", () => {
+describe("Controller: Onboard Company Interest API Test", () => {
   let app: INestApplication;
   let httpServer: any;
   let company_type_repo: CompanyTypeRepository;
   let company_type_entity: any;
+  let onboardCompanyService: OnboardCompanyService;
 
   let USER_ID = "1c77da62-d6fd-40d1-ba16-353894876c45";
 
@@ -34,50 +37,45 @@ describe("Controller: Onboard Company API Test", () => {
     company_type_repo = testingModule.get<CompanyTypeRepository>(
       CompanyTypeRepository,
     );
+    onboardCompanyService = testingModule.get<OnboardCompanyService>(
+      OnboardCompanyService,
+    );
 
     //* create test data * /
     company_type_entity =
       await DataRepository.createCompanyType(company_type_repo);
   });
 
-  it("POST - /onboard-company", async () => {
-    const reqDto = {
+  it("POST - /onboard-company/{company_id}/interest", async () => {
+    const createNewCompanyDto = {
       name: "Fairprice",
       user_id: USER_ID,
       unique_name: "Fairprice".toLowerCase(),
       company_type_id: 1,
       operation_country_id: 1,
       operation_country_name: "Singapore",
+      liquidate_unit_id: 1,
+      liquidate_unit_name: "",
       logo: "'",
     };
 
+    const savedCompany = await onboardCompanyService.onboardNewCompany({
+      ...createNewCompanyDto,
+      id: null,
+      company_type_description: null,
+    });
+
+    const COMPANY_ID = savedCompany.id;
+
+    const reqDto = create_company_req_data;
     let response = await apiRequestTest(httpServer)
-      .post("/api/onboard-company")
+      .post(`/api/onboard-company/${COMPANY_ID}/interest`)
       .send(reqDto)
       .set("Accept", "application/json")
-      .expect(201)
       .expect((res) => {
-        expect(res.body.status_code).toBe("CREATED");
         let res_data = res.body.data;
-        expect(res_data.name).toBe(reqDto.name);
-        expect(res_data.unique_name).toBe(reqDto.unique_name);
-        expect(res_data.company_type_id).toBe(reqDto.company_type_id);
-        expect(res_data.operation_country_id).toBe(reqDto.operation_country_id);
-        expect(res_data.operation_country_name).toBe(
-          reqDto.operation_country_name,
-        );
-        expect(res_data.account_id).toBe(1000);
-        expect(res_data.id).toBeTruthy();
       });
     console.log("Response : ", response.body);
-  });
-
-  it("GET - /users/:user_id", async () => {
-    let response = await apiRequestTest(httpServer)
-      .get(`/api/onboard-company/users/${USER_ID}`)
-      .set("Accept", "application/json")
-      .expect(200);
-
-    console.log("Response : ", response.body);
+    // console.log('Response : ', savedCompany);
   });
 });

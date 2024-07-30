@@ -1,13 +1,11 @@
-import {MigrationInterface, QueryRunner} from 'typeorm';
+import {MigrationInterface, QueryRunner} from "typeorm";
 
-console.log('CurrentTime to append in filename : ' + Date.now());
+console.log("CurrentTime to append in filename : " + Date.now());
 
 export class CreateCompaniesTables1722135909397 implements MigrationInterface {
-    name = 'CreateCompaniesTables1722135909397';
+    name = "CreateCompaniesTables1722135909397";
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-
-
         await queryRunner.query(`CREATE EXTENSION IF NOT EXISTS "uuid-ossp";`);
 
         await queryRunner.query(
@@ -24,9 +22,10 @@ export class CreateCompaniesTables1722135909397 implements MigrationInterface {
 
         await queryRunner.query(
             `
-                CREATE TABLE liquidate_unit
+                CREATE TABLE order_volume
                 (
                     id          smallint primary key,
+                    unit        varchar(100) NOT NULL,
                     name        varchar(100) NOT NULL,
                     description varchar(250) NOT NULL,
                     status      varchar(25)  not null DEFAULT 'NA'
@@ -45,7 +44,8 @@ export class CreateCompaniesTables1722135909397 implements MigrationInterface {
                     company_type_id   smallint              default 0,
                     country_id        int                   default 0,
                     country_name      varchar(100)          default 'NA',
-                    liquidate_unit_id smallint              default 0,
+                    order_volume_id   smallint              default 0,
+                    order_volume_name varchar(100)          default 'NA',
                     created_at        timestamp without time zone NOT NULL DEFAULT now(),
                     updated_at        timestamp without time zone NOT NULL DEFAULT now(),
                     deleted_at        timestamp without time zone,
@@ -53,7 +53,7 @@ export class CreateCompaniesTables1722135909397 implements MigrationInterface {
                     status            varchar(25)  not null DEFAULT 'NA',
                     CONSTRAINT uq_company_name UNIQUE (name),
                     CONSTRAINT fk_company_company_type_id FOREIGN KEY (company_type_id) REFERENCES company_type (id),
-                    CONSTRAINT fk_company_liquidate_unit_id FOREIGN KEY (liquidate_unit_id) REFERENCES liquidate_unit (id)
+                    CONSTRAINT fk_company_order_volume_id FOREIGN KEY (order_volume_id) REFERENCES order_volume (id)
                 );
             `,
         );
@@ -80,7 +80,5 @@ export class CreateCompaniesTables1722135909397 implements MigrationInterface {
         await queryRunner.query(`DROP TABLE company;`);
 
         await queryRunner.query(`DROP TABLE company_types;`);
-
-        await queryRunner.query(`DROP TABLE liquidate_unit;`);
     }
 }
