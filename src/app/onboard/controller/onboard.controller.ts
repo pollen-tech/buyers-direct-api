@@ -56,6 +56,13 @@ export class OnboardController {
     return this.createResponse(data, "OK");
   }
 
+  @Get("/category")
+  @HttpCode(HttpStatus.OK)
+  async getCategory() {
+    let data = await this.onboardCompanyService.getCategories();
+    return this.createResponse(data, "OK");
+  }
+
   @Get("/order-volume")
   @HttpCode(HttpStatus.OK)
   async getOrderVolumes() {

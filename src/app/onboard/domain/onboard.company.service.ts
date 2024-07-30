@@ -14,6 +14,7 @@ import {LiquidateUnitEntity} from "../repositories/liquidate.unit.entity";
 import {CompanyEntity} from "../repositories/company.entity";
 import {CompanyUserEntity} from "../repositories/company.user.entity";
 import {OrderVolumeRepository} from "../repositories/order.volume.repository";
+import {CategoryRepository} from "../repositories/category.repository";
 
 @Injectable()
 export class OnboardCompanyService {
@@ -22,6 +23,7 @@ export class OnboardCompanyService {
         private companyTypeRepository: CompanyTypeRepository,
         private companyUserRepository: CompanyUserRepository,
         private orderVolumeRepository: OrderVolumeRepository,
+        private categoryRepository: CategoryRepository,
     ) {
     }
 
@@ -53,6 +55,11 @@ export class OnboardCompanyService {
 
     async getOrderVolumes(): Promise<LiquidateUnitEntity[]> {
         return await this.orderVolumeRepository.find({
+            where: {status: Status.ACTIVE},
+        });
+    }
+    async getCategories(): Promise<LiquidateUnitEntity[]> {
+        return await this.categoryRepository.find({
             where: {status: Status.ACTIVE},
         });
     }
