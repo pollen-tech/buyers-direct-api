@@ -22,18 +22,13 @@ export class OnboardCompanyReqDto {
   @IsNotEmpty()
   operation_country_id: number;
 
-  @Optional()
-  operation_country_name: string;
-
   @IsNotEmpty()
-  liquidate_unit_id: number;
-
-  @Optional()
-  liquidate_unit_name: string;
+  operation_country_name: string;
 
   @Optional()
   logo: string;
 
+  @IsNotEmpty()
   user_id: string;
 }
 
@@ -53,7 +48,8 @@ export class OnboardCompanyMapper {
     entity.company_type_id = req.company_type_id;
     entity.country_id = req.operation_country_id;
     entity.country_name = req.operation_country_name;
-    entity.liquidate_unit_id = req.liquidate_unit_id;
+    // entity.order_volume_id = req.order_volume_id;
+    // entity.order_volume_name = req.order_volume_name;
     entity.status = Status.ACTIVE;
     if (!req.unique_name || req.unique_name.trim() === "") {
       entity.unique_name = req.name.toLowerCase();

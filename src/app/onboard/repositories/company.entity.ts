@@ -32,11 +32,11 @@ export class CompanyEntity {
   @Column({ type: "varchar" })
   country_name: string;
 
-  @Column({ type: "int" })
-  liquidate_unit_id: number;
-
   @Column({ type: "int", default: 0 })
   order_volume_id: number;
+
+  @Column({ type: "varchar", default: "NA" })
+  order_volume_name: string;
 
   @Column({ type: "varchar" })
   status: Status;

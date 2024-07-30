@@ -48,8 +48,6 @@ describe("Controller: Onboard Company API Test", () => {
       company_type_id: 1,
       operation_country_id: 1,
       operation_country_name: "Singapore",
-      liquidate_unit_id: 1,
-      liquidate_unit_name: "",
       logo: "'",
     };
 
@@ -68,7 +66,6 @@ describe("Controller: Onboard Company API Test", () => {
         expect(res_data.operation_country_name).toBe(
           reqDto.operation_country_name,
         );
-        expect(res_data.liquidate_unit_id).toBe(reqDto.liquidate_unit_id);
         expect(res_data.account_id).toBe(1000);
         expect(res_data.id).toBeTruthy();
       });

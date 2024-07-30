@@ -22,19 +22,6 @@ export class CreateCompaniesInterestTables1722227825474
 
     await queryRunner.query(
       `
-                CREATE TABLE order_volume
-                (
-                    id          smallint primary key,
-                    unit        varchar(100) NOT NULL,
-                    name        varchar(100) NOT NULL,
-                    description varchar(250) NOT NULL,
-                    status      varchar(25)  not null DEFAULT 'NA'
-                );
-            `,
-    );
-
-    await queryRunner.query(
-      `
                 CREATE TABLE import_market
                 (
                     id           uuid                  DEFAULT uuid_generate_v4() primary key,
@@ -88,7 +75,7 @@ export class CreateCompaniesInterestTables1722227825474
                     status        varchar(25)  not null DEFAULT 'NA',
                     CONSTRAINT fk_company_interest_category_id FOREIGN KEY (category_id) REFERENCES category (id)
                 );
-                CREATE INDEX IF NOT EXISTS idx_company_interest_company_id ON company_interest(company_id);
+                CREATE INDEX IF NOT EXISTS idx_interest_category_company_id ON interest_category(company_id);
             `,
     );
   }

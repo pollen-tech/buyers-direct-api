@@ -105,8 +105,6 @@ export class OnboardCompanyService {
     resDto.company_type_id = company.company_type_id;
     resDto.company_type_description = company_type.description;
     resDto.company_type_id = company.company_type_id;
-    resDto.liquidate_unit_id = company.liquidate_unit_id;
-    resDto.liquidate_unit_name = liquidation.name;
     return resDto;
   }
 }
