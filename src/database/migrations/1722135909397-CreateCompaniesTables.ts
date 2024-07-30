@@ -1,17 +1,15 @@
-import {MigrationInterface, QueryRunner} from 'typeorm';
+import { MigrationInterface, QueryRunner } from "typeorm";
 
-console.log('CurrentTime to append in filename : ' + Date.now());
+console.log("CurrentTime to append in filename : " + Date.now());
 
 export class CreateCompaniesTables1722135909397 implements MigrationInterface {
-    name = 'CreateCompaniesTables1722135909397';
+  name = "CreateCompaniesTables1722135909397";
 
-    public async up(queryRunner: QueryRunner): Promise<void> {
+  public async up(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.query(`CREATE EXTENSION IF NOT EXISTS "uuid-ossp";`);
 
-
-        await queryRunner.query(`CREATE EXTENSION IF NOT EXISTS "uuid-ossp";`);
-
-        await queryRunner.query(
-            `
+    await queryRunner.query(
+      `
                 CREATE TABLE company_type
                 (
                     id          smallint primary key,
@@ -20,10 +18,10 @@ export class CreateCompaniesTables1722135909397 implements MigrationInterface {
                     status      varchar(25)  not null DEFAULT 'NA'
                 );
             `,
-        );
+    );
 
-        await queryRunner.query(
-            `
+    await queryRunner.query(
+      `
                 CREATE TABLE liquidate_unit
                 (
                     id          smallint primary key,
@@ -32,10 +30,10 @@ export class CreateCompaniesTables1722135909397 implements MigrationInterface {
                     status      varchar(25)  not null DEFAULT 'NA'
                 );
             `,
-        );
+    );
 
-        await queryRunner.query(
-            `
+    await queryRunner.query(
+      `
                 CREATE TABLE company
                 (
                     id                uuid                  DEFAULT uuid_generate_v4() primary key,
@@ -56,9 +54,9 @@ export class CreateCompaniesTables1722135909397 implements MigrationInterface {
                     CONSTRAINT fk_company_liquidate_unit_id FOREIGN KEY (liquidate_unit_id) REFERENCES liquidate_unit (id)
                 );
             `,
-        );
-        await queryRunner.query(
-            `
+    );
+    await queryRunner.query(
+      `
                 CREATE TABLE company_user
                 (
                     id         uuid                 DEFAULT uuid_generate_v4() primary key,
@@ -71,16 +69,16 @@ export class CreateCompaniesTables1722135909397 implements MigrationInterface {
                     CONSTRAINT fk_company_user_company_id FOREIGN KEY (company_id) REFERENCES company (id)
                 );
             `,
-        );
-    }
+    );
+  }
 
-    public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`DROP TABLE company_user;`);
+  public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.query(`DROP TABLE company_user;`);
 
-        await queryRunner.query(`DROP TABLE company;`);
+    await queryRunner.query(`DROP TABLE company;`);
 
-        await queryRunner.query(`DROP TABLE company_types;`);
+    await queryRunner.query(`DROP TABLE company_types;`);
 
-        await queryRunner.query(`DROP TABLE liquidate_unit;`);
-    }
+    await queryRunner.query(`DROP TABLE liquidate_unit;`);
+  }
 }

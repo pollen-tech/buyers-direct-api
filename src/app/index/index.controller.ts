@@ -1,9 +1,9 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get } from "@nestjs/common";
 
-@Controller('index')
+@Controller("index")
 export class IndexController {
-    @Get()
-    hello() {
-        return { message: 'Hello, I am index page.' };
-    }
+  @Get()
+  hello() {
+    return { message: "Hello, I am index page." };
+  }
 }
