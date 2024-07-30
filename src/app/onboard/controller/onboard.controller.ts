@@ -56,10 +56,10 @@ export class OnboardController {
     return this.createResponse(data, "OK");
   }
 
-  @Get("/liquidate-unit")
+  @Get("/order-volume")
   @HttpCode(HttpStatus.OK)
-  async getLiquidateUnit() {
-    let data = await this.onboardCompanyService.getActiveLiquidateUnits();
+  async getOrderVolumes() {
+    let data = await this.onboardCompanyService.getOrderVolumes();
     return this.createResponse(data, "OK");
   }
 

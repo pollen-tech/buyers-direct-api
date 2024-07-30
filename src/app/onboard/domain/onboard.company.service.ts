@@ -13,6 +13,7 @@ import {CompanyTypeEntity} from "../repositories/company.type.entity";
 import {LiquidateUnitEntity} from "../repositories/liquidate.unit.entity";
 import {CompanyEntity} from "../repositories/company.entity";
 import {CompanyUserEntity} from "../repositories/company.user.entity";
+import {OrderVolumeRepository} from "../repositories/order.volume.repository";
 
 @Injectable()
 export class OnboardCompanyService {
@@ -20,7 +21,7 @@ export class OnboardCompanyService {
         private companyRepository: CompanyRepository,
         private companyTypeRepository: CompanyTypeRepository,
         private companyUserRepository: CompanyUserRepository,
-        private liquidateUnitRepository: LiquidateUnitRepository,
+        private orderVolumeRepository: OrderVolumeRepository,
     ) {
     }
 
@@ -50,8 +51,8 @@ export class OnboardCompanyService {
         return this.createResponseDto(company, company_user.user_id);
     }
 
-    async getActiveLiquidateUnits(): Promise<LiquidateUnitEntity[]> {
-        return await this.liquidateUnitRepository.find({
+    async getOrderVolumes(): Promise<LiquidateUnitEntity[]> {
+        return await this.orderVolumeRepository.find({
             where: {status: Status.ACTIVE},
         });
     }
