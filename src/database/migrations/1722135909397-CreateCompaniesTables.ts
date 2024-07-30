@@ -1,9 +1,9 @@
-import {MigrationInterface, QueryRunner} from "typeorm";
+import { MigrationInterface, QueryRunner } from 'typeorm';
 
-console.log("CurrentTime to append in filename : " + Date.now());
+console.log('CurrentTime to append in filename : ' + Date.now());
 
 export class CreateCompaniesTables1722135909397 implements MigrationInterface {
-    name = "CreateCompaniesTables1722135909397";
+    name = 'CreateCompaniesTables1722135909397';
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE EXTENSION IF NOT EXISTS "uuid-ossp";`);

@@ -1,16 +1,16 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Column, Entity, PrimaryColumn } from 'typeorm';
 
-@Entity("liquidate_unit")
+@Entity('liquidate_unit')
 export class LiquidateUnitEntity {
-  @PrimaryColumn()
-  id: number;
+    @PrimaryColumn()
+    id: number;
 
-  @Column()
-  name: string;
+    @Column()
+    name: string;
 
-  @Column()
-  description: string;
+    @Column()
+    description: string;
 
-  @Column()
-  status: string;
+    @Column()
+    status: string;
 }

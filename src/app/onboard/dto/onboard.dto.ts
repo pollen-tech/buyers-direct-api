@@ -1,8 +1,8 @@
-import {isEmpty, IsNotEmpty} from "class-validator";
-import {CompanyEntity} from "../repositories/company.entity";
-import {Optional} from "@nestjs/common";
-import {Status} from "../../../common/enums/common.enum";
-import {CompanyInterestService} from "../domain/company.interest.service";
+import { isEmpty, IsNotEmpty } from 'class-validator';
+import { CompanyEntity } from '../repositories/company.entity';
+import { Optional } from '@nestjs/common';
+import { Status } from '../../../common/enums/common.enum';
+import { CompanyInterestService } from '../domain/company.interest.service';
 
 export class OnboardCompanyReqDto {
     id!: string;
@@ -53,7 +53,7 @@ export class OnboardCompanyMapper {
         // entity.order_volume_id = req.order_volume_id;
         // entity.order_volume_name = req.order_volume_name;
         entity.status = Status.ACTIVE;
-        if (!req.unique_name || req.unique_name.trim() === "") {
+        if (!req.unique_name || req.unique_name.trim() === '') {
             entity.unique_name = req.name.toLowerCase();
         } else {
             entity.unique_name = req.unique_name.toLowerCase();
@@ -79,8 +79,15 @@ export class CompanyInterestReqDto {
     target_markets: [TargetMarketDto];
 }
 
-export class CompanyInterestResDto extends CompanyInterestService {
+export class CompanyInterestResDto extends CompanyInterestReqDto {
     created_status: string;
+}
+
+export class CompanyInterestProfileDto extends OnboardCompanyReqDto {
+    company_id: string;
+    interest_categories: any;
+    import_markets: any;
+    target_markets: any;
 }
 
 export class TargetMarketDto {
