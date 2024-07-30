@@ -1,22 +1,22 @@
-import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { Status } from "../../../common/enums/common.enum";
+import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Status } from '../../../common/enums/common.enum';
 
-@Entity("category")
+@Entity('category')
 export class CategoryEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+    @PrimaryGeneratedColumn()
+    id: number;
 
-  @Column({ type: "varchar" })
-  name: string;
+    @Column({ type: 'varchar' })
+    name: string;
 
-  @Column({ type: "varchar" })
-  description: string;
+    @Column({ type: 'varchar' })
+    description: string;
 
-  @Column({ type: "varchar" })
-  status: Status;
+    @Column({ type: 'varchar' })
+    status: Status;
 
-  @BeforeInsert()
-  beforeCreateOrUpdate() {
-    this.status = Status.ACTIVE;
-  }
+    @BeforeInsert()
+    beforeCreateOrUpdate() {
+        this.status = Status.ACTIVE;
+    }
 }
