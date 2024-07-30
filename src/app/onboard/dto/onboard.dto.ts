@@ -1,8 +1,8 @@
-import { isEmpty, IsNotEmpty } from 'class-validator';
-import { CompanyEntity } from '../repositories/company.entity';
-import { Optional } from '@nestjs/common';
-import { Status } from '../../../common/enums/common.enum';
-import { CompanyInterestService } from '../domain/company.interest.service';
+import {isEmpty, IsNotEmpty} from 'class-validator';
+import {CompanyEntity} from '../repositories/company.entity';
+import {Optional} from '@nestjs/common';
+import {Status} from '../../../common/enums/common.enum';
+import {CompanyInterestService} from '../domain/company.interest.service';
 
 export class OnboardCompanyReqDto {
     id!: string;
@@ -79,8 +79,15 @@ export class CompanyInterestReqDto {
     target_markets: [TargetMarketDto];
 }
 
-export class CompanyInterestResDto extends CompanyInterestService {
+export class CompanyInterestResDto extends CompanyInterestReqDto {
     created_status: string;
+}
+
+export class CompanyInterestProfileDto extends OnboardCompanyReqDto {
+    company_id: string;
+    interest_categories: any;
+    import_markets: any;
+    target_markets: any;
 }
 
 export class TargetMarketDto {

@@ -1,9 +1,9 @@
-import { Body, Controller, Get, HostParam, HttpCode, HttpStatus, Param, Post, Query } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
-import { Public } from 'nest-keycloak-connect';
-import { OnboardCompanyService } from '../domain/onboard.company.service';
-import { CompanyInterestReqDto, OnboardCompanyReqDto, OnboardCompanyResDto } from '../dto/onboard.dto';
-import { CompanyInterestService } from '../domain/company.interest.service';
+import {Body, Controller, Get, HostParam, HttpCode, HttpStatus, Param, Post, Query} from '@nestjs/common';
+import {ApiTags} from '@nestjs/swagger';
+import {Public} from 'nest-keycloak-connect';
+import {OnboardCompanyService} from '../domain/onboard.company.service';
+import {CompanyInterestReqDto, OnboardCompanyReqDto, OnboardCompanyResDto} from '../dto/onboard.dto';
+import {CompanyInterestService} from '../domain/company.interest.service';
 
 @ApiTags('Onboard-company')
 @Controller('onboard-company')
@@ -12,7 +12,8 @@ export class OnboardController {
     constructor(
         private readonly onboardCompanyService: OnboardCompanyService,
         private companyInterestService: CompanyInterestService,
-    ) {}
+    ) {
+    }
 
     @Get('/index')
     @HttpCode(HttpStatus.OK)
@@ -67,6 +68,13 @@ export class OnboardController {
     async createCompanyInterest(@Param('company_id') company_id: string, @Body() request: CompanyInterestReqDto) {
         request.company_id = company_id;
         return this.companyInterestService.createCompanyInterest(request);
+    }
+
+    @Get('/:company_id/interest')
+    @HttpCode(HttpStatus.OK)
+    async getCompanyInterest(@Param('company_id') company_id: string) {
+        let data = await this.companyInterestService.getCompanyInterest(company_id);
+        return this.createResponse(data, 'OK');
     }
 
     private createResponse(data: OnboardCompanyResDto | any, status_code: string) {
