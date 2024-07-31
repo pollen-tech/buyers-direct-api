@@ -4,6 +4,8 @@ import { Public } from 'nest-keycloak-connect';
 import { OnboardCompanyService } from '../domain/onboard.company.service';
 import { CompanyInterestReqDto, OnboardCompanyReqDto, OnboardCompanyResDto } from '../dto/onboard.dto';
 import { CompanyInterestService } from '../domain/company.interest.service';
+import { CompanyOnboardNotifyService } from '../domain/company.onboard.notify.service';
+import { UserDto } from '../../../common/dtos/user.dto';
 
 @ApiTags('Onboard-company')
 @Controller('onboard-company')
@@ -12,6 +14,7 @@ export class OnboardController {
     constructor(
         private readonly onboardCompanyService: OnboardCompanyService,
         private companyInterestService: CompanyInterestService,
+        private companyOnboardNotifyService: CompanyOnboardNotifyService,
     ) {}
 
     @Get('/index')
@@ -73,6 +76,13 @@ export class OnboardController {
     @HttpCode(HttpStatus.OK)
     async getCompanyInterest(@Param('company_id') company_id: string) {
         let data = await this.companyInterestService.getCompanyInterest(company_id);
+        return this.createResponse(data, 'OK');
+    }
+
+    @Post('/:company_id/notify-admin-by-email')
+    @HttpCode(HttpStatus.OK)
+    async notifyAdminAfterCompanyOnboarded(@Param('company_id') company_id: string, @Body() user: UserDto) {
+        let data = await this.companyOnboardNotifyService.notifyAdmin(company_id, user);
         return this.createResponse(data, 'OK');
     }
 

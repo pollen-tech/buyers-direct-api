@@ -3,4 +3,8 @@ import BaseRepository from '../../../database/infrastructure/repository/base.rep
 import { CompanyTypeEntity } from './company.type.entity';
 
 @CustomRepository(CompanyTypeEntity)
-export class CompanyTypeRepository extends BaseRepository<CompanyTypeEntity> {}
+export class CompanyTypeRepository extends BaseRepository<CompanyTypeEntity> {
+    async findById(company_type_id: number) {
+        return await this.getRepository().findOneBy({ id: company_type_id });
+    }
+}
