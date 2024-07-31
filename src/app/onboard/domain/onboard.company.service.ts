@@ -114,7 +114,8 @@ export class OnboardCompanyService {
         resDto.company_type_id = company.company_type_id;
         resDto.company_type_description = company_type.description;
         resDto.company_type_id = company.company_type_id;
-        resDto.operation_country_name = company.operation_country_name;
+        resDto.operation_country_name = company.country_name;
+        resDto.operation_country_id = company.country_id;
         resDto.order_volume_id = company.order_volume_id;
         resDto.order_volume_name = company.order_volume_name;
         return resDto;
