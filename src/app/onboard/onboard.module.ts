@@ -23,6 +23,7 @@ import { OrderVolumeEntity } from './repositories/order.volume.entity';
 import { InterestCategoryRepository } from './repositories/interest.category.repository';
 import { InterestCategoryEntity } from './repositories/interest.category.entity';
 import { CompanyOnboardNotifyService } from './domain/company.onboard.notify.service';
+import {NotifyModule} from "../notify/notify.module";
 
 let repositories: any[] = [
     CompanyTypeRepository,
@@ -48,7 +49,7 @@ let entities: any[] = [
 ];
 
 @Module({
-    imports: [TypeOrmModule.forFeature(entities), DatabaseModule.forCustomRepository(repositories)],
+    imports: [TypeOrmModule.forFeature(entities), DatabaseModule.forCustomRepository(repositories),NotifyModule],
     providers: [OnboardCompanyService, CompanyInterestService, CompanyOnboardNotifyService],
     controllers: [OnboardController],
     exports: [TypeOrmModule, OnboardCompanyService],

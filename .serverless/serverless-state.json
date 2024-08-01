@@ -109,7 +109,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "sandbox.lambda.code.deploy",
-                "S3Key": "serverless/direct-api/dev/1722397575933-2024-07-31T03:46:15.933Z/direct-api.zip"
+                "S3Key": "serverless/direct-api/dev/1722491979341-2024-08-01T05:59:39.341Z/direct-api.zip"
               },
               "Handler": "dist/aws/lambda.handler",
               "Runtime": "nodejs20.x",
@@ -128,14 +128,14 @@
               "ApiLogGroup"
             ]
           },
-          "ApiLambdaVersionvz6o38axW6sopmtAYcQMQ1OiHn9S1p9qZXyM2de51AY": {
+          "ApiLambdaVersions6ETmw9WnLfRzJ9nA80VfbjncS2zVSMCBdYGPoHws": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ApiLambdaFunction"
               },
-              "CodeSha256": "1yri/c9LXgHYb4DoY4jwkrytNrb1wOSrkHfVAspsXQM=",
+              "CodeSha256": "7+5aPg7KGCe30jJJ2bSwHISEImc6jcxtlSl2m3mG9ZU=",
               "Description": "Pollen Direct Aws Lambda API"
             }
           },
@@ -259,7 +259,7 @@
               "ApiLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1722397565499": {
+          "ApiGatewayDeployment1722491968098": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -320,7 +320,7 @@
           "ApiLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ApiLambdaVersionvz6o38axW6sopmtAYcQMQ1OiHn9S1p9qZXyM2de51AY"
+              "Ref": "ApiLambdaVersions6ETmw9WnLfRzJ9nA80VfbjncS2zVSMCBdYGPoHws"
             },
             "Export": {
               "Name": "sls-direct-api-dev-ApiLambdaFunctionQualifiedArn"
@@ -395,7 +395,7 @@
         "timeout": 20,
         "runtime": "nodejs20.x",
         "vpc": {},
-        "versionLogicalId": "ApiLambdaVersionvz6o38axW6sopmtAYcQMQ1OiHn9S1p9qZXyM2de51AY"
+        "versionLogicalId": "ApiLambdaVersions6ETmw9WnLfRzJ9nA80VfbjncS2zVSMCBdYGPoHws"
       }
     },
     "configValidationMode": "warn",
@@ -417,7 +417,7 @@
     "isDashboardMonitoringPreconfigured": false
   },
   "package": {
-    "artifactDirectoryName": "serverless/direct-api/dev/1722397575933-2024-07-31T03:46:15.933Z",
+    "artifactDirectoryName": "serverless/direct-api/dev/1722491979341-2024-08-01T05:59:39.341Z",
     "artifact": "direct-api.zip"
   }
 }
