@@ -27,7 +27,7 @@ export class CompanyOnboardNotifyService {
         const company_type = await this.companyTypeRepository.findById(company.company_type_id);
         const targetMarketEntities = await this.targetMarketRepository.findBy({company_id: company_id});
 
-        const importMarkets = await this.importMarketRepository.findBy({company_id: company_id}).then((results) => {
+        const import_markets = await this.importMarketRepository.findBy({company_id: company_id}).then((results) => {
             return results.map((market) => market.country_name).join(', ');
         });
 
@@ -43,12 +43,12 @@ export class CompanyOnboardNotifyService {
             })
             .join(',');
 
-        const dto = this.createDto(company, company_type, user, interest_categories, target_countries, target_cities);
+        const dto = this.createDto(company, company_type, user, interest_categories, target_countries, target_cities, import_markets);
         return await this.emailNotificationService.sendAdminOnboardNotifyEmailForDirect(dto);
     }
 
     private createDto(company: CompanyEntity, company_type: CompanyTypeEntity, user: UserDto,
-                      interest_categories: string, target_countries: string, target_cities: string) {
+                      interest_categories: string, target_countries: string, target_cities: string, import_markets: string) {
         const dto: EmailAdminOnboardNotifyDto = {
             email_type: null,
             companyName: company.name,
@@ -58,6 +58,8 @@ export class CompanyOnboardNotifyService {
             contactTargetResaleMarketCountries: target_countries,
             contactTargetResaleMarketCities: target_cities,
             monthlyOrderVolume: company.order_volume_name,
+            contactMarketFrom: import_markets,
+            contactSubCategories: '',
             contactName: user.first_name,
             contactEmail: user.email,
             contactPhoneNumber: '+' + user.country_code + user.phone_no,

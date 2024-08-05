@@ -4,6 +4,8 @@ export class EmailAdminOnboardNotifyDto {
     companyName: string;
     companyType: string;
     companyLocation: string;
+    contactMarketFrom: string;
+    contactSubCategories: string;
     contactEmail: string;
     contactPhoneNumber: string;
     contactCategoryOfInterest: string;
