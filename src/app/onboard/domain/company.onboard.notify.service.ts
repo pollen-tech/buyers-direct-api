@@ -62,6 +62,7 @@ export class CompanyOnboardNotifyService {
             contactSubCategories: '',
             contactName: user.first_name,
             contactEmail: user.email,
+            pollenPassId: user.pollen_pass_id,
             contactPhoneNumber: '+' + user.country_code + user.phone_no,
             adminLink: 'https://admin-dev.pollen.tech',
         };
