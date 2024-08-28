@@ -70,6 +70,9 @@ export class CompanyInterestReqDto {
     order_volume_id: number;
 
     @IsNotEmpty()
+    order_volume_name: string;
+
+    @IsNotEmpty()
     interest_categories: [{ category_id: number; category_name: string }];
 
     @IsNotEmpty()

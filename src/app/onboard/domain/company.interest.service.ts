@@ -86,7 +86,7 @@ export class CompanyInterestService {
         const savedTargetMarketsPromise = this.saveTargetMarkets(reqDto.company_id, reqDto.target_markets);
 
         // save volume
-        const savedVolumePromise = this.saveOrderVolume(reqDto.company_id, reqDto.order_volume_id);
+        const savedVolumePromise = this.saveOrderVolume(reqDto.company_id, reqDto.order_volume_id,reqDto.order_volume_name);
 
         const [savedCategories, savedImportMarkets, savedTargetMarkets, savedVolume] = await Promise.all([
             savedCategoriesPromise,
@@ -106,12 +106,13 @@ export class CompanyInterestService {
         return data;
     }
 
-    private async saveOrderVolume(company_id: string, order_volume_id: number) {
+    private async saveOrderVolume(company_id: string, order_volume_id: number,order_volume_name: string) {
         let savedCompany = await this.companyRepository.findOneBy({
             id: company_id,
         });
         if (savedCompany) {
             savedCompany.order_volume_id = order_volume_id;
+            savedCompany.order_volume_name = order_volume_name;
         }
         return await this.companyRepository.save(savedCompany);
     }

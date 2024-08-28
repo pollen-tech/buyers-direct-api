@@ -1,4 +1,4 @@
-import { IsNotEmpty } from 'class-validator';
+import {IsNotEmpty} from 'class-validator';
 
 export class UserDto {
     @IsNotEmpty()
@@ -15,4 +15,7 @@ export class UserDto {
 
     @IsNotEmpty()
     phone_no: number;
+
+    @IsNotEmpty()
+    pollen_pass_id: number;
 }
